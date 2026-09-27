@@ -2,7 +2,7 @@
 <html lang="am">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>የጤና ባለሙያዎች የስራ ላይ የአለባበስ ስርዓት መመሪያ (መመሪያ ቁጥር 375/2013)</title>
   <!-- Google Fonts for Amharic -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,12 +37,15 @@
       font-family: 'Noto Sans Ethiopic', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
-    body {
+    html, body {
+      width: 100%;
+      height: 100%;
       background-color: var(--bg-dark);
       color: var(--text-main);
       overflow: hidden;
-      height: 100vh;
-      width: 100vw;
+    }
+
+    body {
       display: flex;
       flex-direction: column;
     }
@@ -52,7 +55,8 @@
       flex: 1;
       position: relative;
       width: 100%;
-      height: calc(100vh - 60px);
+      height: calc(100vh - 65px);
+      height: calc(100svh - 65px);
       overflow: hidden;
     }
 
@@ -64,13 +68,15 @@
       height: 100%;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.4s ease, transform 0.4s ease;
-      transform: translateX(30px);
-      padding: 3rem 5rem;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translateX(20px);
+      padding: 2.5rem 4rem;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
+      overflow-y: auto;
       background: radial-gradient(circle at 80% 20%, #172a45 0%, var(--bg-dark) 70%);
+      -webkit-overflow-scrolling: touch;
     }
 
     .slide.active {
@@ -79,58 +85,104 @@
       transform: translateX(0);
     }
 
+    .slide::-webkit-scrollbar {
+      width: 6px;
+    }
+    .slide::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 4px;
+    }
+
     /* Slide Header */
     .slide-header {
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       border-bottom: 2px solid var(--border-color);
       padding-bottom: 0.8rem;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
 
     .slide-title {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 700;
       color: #64ffda;
       line-height: 1.3;
     }
 
     .slide-subtitle {
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: var(--text-muted);
     }
 
     /* Content Cards and Grids */
     .content-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
       align-items: stretch;
+      width: 100%;
     }
 
     .card {
       background-color: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 8px;
-      padding: 1.5rem;
+      padding: 1.25rem;
       box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
       transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
     .card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-2px);
       border-color: #64ffda;
     }
 
     .card-title {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 600;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
       color: #e6f1ff;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+    }
+
+    /* SVG Containers */
+    .svg-container {
+      width: 100%;
+      height: 140px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 0.8rem;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      padding: 0.5rem;
+    }
+
+    .svg-container svg {
+      max-height: 100%;
+      max-width: 100%;
+      filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.3));
+    }
+
+    .hero-svg-container {
+      width: 100%;
+      max-width: 650px;
+      height: 200px;
+      margin: 1.5rem auto 0 auto;
+      border-radius: 8px;
+      border: 2px solid #64ffda;
+      background: rgba(17, 34, 64, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
     }
 
     /* Lists */
@@ -143,8 +195,7 @@
       padding-left: 1.5rem;
       margin-bottom: 0.8rem;
       line-height: 1.6;
-      font-size: 1.05rem;
-      color: #cca8c0;
+      font-size: 1rem;
       color: #c8d6e5;
     }
 
@@ -153,21 +204,10 @@
       position: absolute;
       left: 0;
       color: #64ffda;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
-    ol.styled-list {
-      padding-left: 1.2rem;
-    }
-
-    ol.styled-list li {
-      margin-bottom: 0.8rem;
-      line-height: 1.6;
-      font-size: 1.05rem;
-      color: #c8d6e5;
-    }
-
-    /* Title Slide Specifics */
+    /* Title Slide */
     .title-slide {
       text-align: center;
       align-items: center;
@@ -176,37 +216,38 @@
     }
 
     .title-slide h1 {
-      font-size: 3rem;
+      font-size: 2.5rem;
       color: #ffffff;
       margin-bottom: 1rem;
       font-weight: 700;
+      line-height: 1.3;
     }
 
     .title-slide h2 {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       color: #64ffda;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       font-weight: 400;
     }
 
     .badge-pill {
       background: rgba(100, 255, 218, 0.1);
       color: #64ffda;
-      padding: 0.5rem 1.5rem;
+      padding: 0.4rem 1.2rem;
       border-radius: 50px;
       border: 1px solid #64ffda;
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
       display: inline-block;
     }
 
     .meta-info {
-      margin-top: 2rem;
+      margin-top: 1.5rem;
       color: var(--text-muted);
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
 
-    /* Color Palette Cards (Slide 8 & 9) */
+    /* Color Palette Cards */
     .color-card {
       padding: 1.2rem;
       border-radius: 8px;
@@ -214,25 +255,26 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 140px;
+      min-height: 240px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
 
     .color-card.or-icu { background-color: var(--color-or-icu); }
     .color-card.emergency { background-color: var(--color-emergency); }
-    .color-card.doctor { background-color: var(--color-doctor); color: #000; }
+    .color-card.doctor { background-color: var(--color-doctor); color: #0a192f; }
     .color-card.nurse { background-color: var(--color-nurse); }
     .color-card.midwife { background-color: var(--color-midwife); }
     .color-card.other { background-color: var(--color-other); border: 1px solid #334e68; }
 
     .color-title {
-      font-size: 1.4rem;
+      font-size: 1.25rem;
       font-weight: 700;
     }
 
     .color-desc {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       opacity: 0.9;
+      margin-bottom: 0.5rem;
     }
 
     /* Stepper / Process Visuals */
@@ -240,6 +282,7 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
+      width: 100%;
     }
 
     .step-item {
@@ -247,7 +290,7 @@
       align-items: flex-start;
       gap: 1rem;
       background-color: var(--card-bg);
-      padding: 1rem 1.5rem;
+      padding: 1rem 1.25rem;
       border-radius: 6px;
       border-left: 4px solid #64ffda;
     }
@@ -266,45 +309,45 @@
     }
 
     .step-text {
-      font-size: 1.05rem;
+      font-size: 1rem;
       line-height: 1.5;
     }
 
-    /* Disciplinary Escalation Specifics */
-    .warning-level {
-      border-left: 4px solid #ffb703;
-    }
-    .danger-level {
-      border-left: 4px solid var(--accent);
-    }
+    .warning-level { border-left: 4px solid #ffb703; }
+    .danger-level { border-left: 4px solid var(--accent); }
 
     /* Navigation Bar */
     .controls {
-      height: 60px;
+      height: 65px;
       background-color: #020c1b;
       border-top: 1px solid var(--border-color);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 2rem;
+      padding: 0 1.25rem;
       z-index: 100;
+      gap: 0.5rem;
+      width: 100%;
     }
 
     .btn {
       background-color: transparent;
       color: #64ffda;
       border: 1px solid #64ffda;
-      padding: 0.5rem 1.2rem;
+      padding: 0.5rem 1rem;
       border-radius: 4px;
       cursor: pointer;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       transition: all 0.2s ease;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 44px;
+      min-height: 44px;
     }
 
-    .btn:hover {
-      background-color: rgba(100, 255, 218, 0.1);
-    }
-
+    .btn:hover { background-color: rgba(100, 255, 218, 0.1); }
     .btn:disabled {
       color: var(--text-muted);
       border-color: var(--border-color);
@@ -314,7 +357,9 @@
 
     .slide-counter {
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 0.85rem;
+      text-align: center;
+      white-space: nowrap;
     }
 
     .progress-bar-container {
@@ -324,6 +369,7 @@
       width: 100%;
       height: 4px;
       background-color: var(--border-color);
+      z-index: 101;
     }
 
     .progress-bar {
@@ -333,23 +379,26 @@
       transition: width 0.3s ease;
     }
 
-    /* Responsive Adjustments */
     @media (max-width: 768px) {
-      .slide {
-        padding: 1.5rem;
-      }
-      .slide-title {
-        font-size: 1.5rem;
-      }
-      .title-slide h1 {
-        font-size: 1.8rem;
-      }
-      .title-slide h2 {
-        font-size: 1.2rem;
-      }
-      .content-grid {
-        grid-template-columns: 1fr;
-      }
+      .slide { padding: 1.25rem 1rem; }
+      .slide-title { font-size: 1.35rem; }
+      .slide-subtitle { font-size: 0.85rem; }
+      .title-slide h1 { font-size: 1.6rem; }
+      .title-slide h2 { font-size: 1.1rem; }
+      .badge-pill { font-size: 0.85rem; padding: 0.3rem 0.8rem; }
+      .content-grid { grid-template-columns: 1fr !important; }
+      .controls { padding: 0 0.75rem; }
+      .btn { padding: 0.4rem 0.75rem; font-size: 0.85rem; }
+      .btn-text-full { display: none; }
+      .btn-text-short { display: inline; }
+      .card { padding: 1rem; }
+      .card-title { font-size: 1.1rem; }
+      .svg-container { height: 120px; }
+      .hero-svg-container { height: 150px; }
+    }
+
+    @media (min-width: 769px) {
+      .btn-text-short { display: none; }
     }
   </style>
 </head>
@@ -359,7 +408,7 @@
     <div class="progress-bar" id="progressBar"></div>
   </div>
 
-  <div class="deck-container">
+  <div class="deck-container" id="deckContainer">
 
     <!-- Slide 1: Title -->
     <div class="slide active title-slide">
@@ -378,19 +427,19 @@
       <div class="content-grid">
         <div class="card">
           <div class="card-title">🔄 የሪፎርም አካል</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">በጤና ተቋማት የሚሰጡ አገልግሎቶችን ለማሻሻል ከሚተገበሩ የሪፎርም ስራዎች አንዱና ዋነኛው ወጥ የአለባበስ ስርዓት መዘርጋት ነው::</p>
+          <p style="line-height: 1.6; color: #c8d6e5;">በጤና ተቋማት የሚሰጡ አገልግሎቶችን ለማሻሻል ከተዘጋጁት ስራዎች አንዱ ወጥ የአለባበስ ስርዓት መዘርጋት ነው::</p>
         </div>
         <div class="card">
           <div class="card-title">🤝 የታካሚ አመኔታ</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">የባለሙያውን ሙያዊ ገፅታ በመገንባት ተገልጋዩ ማህበረሰብ በሚገለገልበት ተቋም እና በሚያገለግለው ባለሙያ ላይ ከፍተኛ እምነት እንዲያሳድር ያደርጋል::</p>
+          <p style="line-height: 1.6; color: #c8d6e5;">የባለሙያውን ሙያዊ ገፅታ በመገንባት ተገልጋዩ ማህበረሰብ በተቋሙና በባለሙያው ላይ ከፍተኛ እምነት እንዲያሳድር ያደርጋል::</p>
         </div>
         <div class="card">
           <div class="card-title">✨ ሙያዊ ክብር</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">ባለሙያው በሙያው እንዲኮራ፣ ሙያዊ ፍቅር እንዲያጎለብት እና ሩህሩህና አክባሪ አካባቢ እንዲፈጠር ያግዛል::</p>
+          <p style="line-height: 1.6; color: #c8d6e5;">ባለሙያው በሙያው እንዲኮራና የስራ ፍቅር እንዲያጎለብት ያደርጋል::</p>
         </div>
         <div class="card">
           <div class="card-title">⚖️ ተጠያቂነት</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">ተገልጋዩ የሚያገለግለውን ባለሙያ ማንነት በቀላሉ እንዲያውቅ በማድረግ ግልፅና ተጠያቂነት ያለው አሰራር ይዘረጋል::</p>
+          <p style="line-height: 1.6; color: #c8d6e5;">በስራ አሰጣጥ ላይ ግልጽነትና ተጠያቂነትን ያሰፍናል::</p>
         </div>
       </div>
     </div>
@@ -401,13 +450,13 @@
         <div class="slide-title">የመመሪያው ዋና ዋና ዓላማዎች</div>
         <div class="slide-subtitle">አንቀጽ 3</div>
       </div>
-      <div class="card" style="max-width: 900px; margin: 0 auto; width: 100%;">
+      <div class="card" style="width: 100%;">
         <ul class="styled-list">
-          <li><strong>በሽታ መከላከል፡</strong> የጤና ባለሙያውን እና ተገልጋዩን ማህበረሰብ ከተላላፊ በሽታዎች እና ጉዳቶች መከላከል::</li>
-          <li><strong>ሙያዊ ፍቅር፡</strong> የጤና ባለሙያው በሙያው እንዲኮራ እና ሙያዊ ፍቅር እንዲያጎለብት ማገዝ::</li>
-          <li><strong>ቀላል ግልጽነት፡</strong> ተገልጋዩ ማህበረሰብ የሚያገለግሉትን የጤና ባለሙያዎች በቀላሉ እንዲለይ እና እንዲግባባ ማድረግ::</li>
-          <li><strong>ተቋማዊ እምነት፡</strong> ተገልጋዩ ማህበረሰብ በጤና ተቋማቱ እና አገልግሎቱን በሚሰጠው ባለሙያ እምነት እንዲኖረው ማስቻሌ::</li>
-          <li><strong>ተጠያቂነት፡</strong> በጤና ተቋማት እና በባለሙያዎች ዘንድ ተጠያቂነት እና ግልፀኝነት መፍጠር::</li>
+          <li><strong>በሽታ መከላከል፡</strong> ባለሙያውንና ህሙማንን ከተላላፊ በሽታዎችና ጉዳቶች መከላከል::</li>
+          <li><strong>ሙያዊ ፍቅር፡</strong> ባለሙያው በሙያው እንዲኮራና ሙያዊ ፍቅር እንዲያጎለብት ማገዝ::</li>
+          <li><strong>ቀላል ግልጽነት፡</strong> ተገልጋዩ ህብረተሰብ የሚያገለግሉትን ባለሙያዎች በቀላሉ እንዲለይ ማድረግ::</li>
+          <li><strong>ተቋማዊ እምነት፡</strong> ተገልጋዩ በጤና ተቋማትና በባለሙያው ላይ ያለው እምነት እንዲጨምር ማድረግ::</li>
+          <li><strong>ተጠያቂነት፡</strong> ተጠያቂነትና ግልጸኝነት ያለው አሰራር መዘርጋት::</li>
         </ul>
       </div>
     </div>
@@ -421,15 +470,15 @@
       <div class="content-grid">
         <div class="card">
           <div class="card-title">🏥 የጤና ተቋማት</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">በኢትዮጵያ በሚገኙ በሁሉም **የመንግስት**፣ **የግል** እና **የግብረሰናይ** የጤና ተቋማት (ሆስፒታሎች፣ ጤና ጣቢያዎች፣ ክሊኒኮች) ውስጥ ተፈጻሚ ይሆናል::</p>
+          <p style="line-height: 1.6; color: #c8d6e5;">በሁሉም የመንግስት፣ የግል እና የግብረሰናይ የጤና ተቋማት ላይ ተፈጻሚ ይሆናል::</p>
         </div>
         <div class="card">
           <div class="card-title">👨‍⚕️ የጤና ባለሙያዎች</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">በዲፕሎማ፣ በዲግሪ፣ በስፔሻላይዜሽን እና በሌሎች የጤና ሳይንስ ዘርፎች ተመርቀው ቀጥተኛና ሁለንተናዊ አገልግሎት የሚሰጡ ባለሙያዎችን ሁሉ ያጠቃልላል::</p>
+          <p style="line-height: 1.6; color: #c8d6e5;">በሁሉም ደረጃ የሚገኙ የጤና ባለሙያዎችን ያጠቃልላል::</p>
         </div>
         <div class="card">
           <div class="card-title">🎓 ተማሪዎች</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">በየተቋማቱ ለተግባራዊ ልምምድ (Practicum/Internship) የተመደቡ ማንኛውም የጤና ሳይንስ ተማሪዎች ላይ ተፈጻሚ ይሆናል::</p>
+          <p style="line-height: 1.6; color: #c8d6e5;">በጤና ተቋማት ውስጥ የተግባር ልምምድ (Practicum/Internship) የሚያደርጉ የጤና ሳይንስ ተማሪዎችን ያጠቃልላል::</p>
         </div>
       </div>
     </div>
@@ -438,24 +487,20 @@
     <div class="slide">
       <div class="slide-header">
         <div class="slide-title">የመሰረታዊ ህጎች አጠቃላይ እይታ</div>
-        <div class="slide-subtitle">ክፍል ሁለት (2.1)</div>
+        <div class="slide-subtitle">ክፍል ሁለት</div>
       </div>
       <div class="content-grid">
         <div class="card">
           <div class="card-title">🧼 ሙያዊ ገጽታና ንጽህና</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">የባለሙያው አለባበስ ሙያዊ ገፅታን የተላበሰ፣ ንፁህ እና የግል ንጽህናውን በአግባቡ የጠበቀ መሆን አለበት::</p>
+          <p style="line-height: 1.6; color: #c8d6e5;">ንጹህ፣ ደረጃውን የጠበቀና ሙያዊ ባህሪን ያንጸባረቀ መሆን አለበት:: ከፍተኛ የግል ንጽህና መጠበቅ ግዴታ ነው::</p>
         </div>
         <div class="card">
           <div class="card-title">🪪 የመታወቂያ ባጅ</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">ማንኛውም ባለሙያ በስራ ገበታ ላይ በሚገኝበት ጊዜ ሁሉ ማንነቱንና ሙያውን የሚገልፅ ባጅ ማደራቱ ግዴታ ነው::</p>
+          <p style="line-height: 1.6; color: #c8d6e5;">በስራ ሰዓት ሁልጊዜ መደረግ አለበት::</p>
         </div>
         <div class="card">
           <div class="card-title">🚫 የስራ ቦታ ወሰን</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">የደንብ ልብስን (Scrub) ከተፈቀደው የስራ ቦታ ውጭ ለብሶ መንቀሳቀስ በጥብቅ የተከለከለ ነው::</p>
-        </div>
-        <div class="card">
-          <div class="card-title">✂️ ዲዛይን አለመለወጥ</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">ማንኛውም ባለሙያ የደንብ ልብሱን ከተቀመጠው መስፈርት ውጭ አድርጎ ማሻሻል ወይም መለወጥ አይችልም::</p>
+          <p style="line-height: 1.6; color: #c8d6e5;">የደንብ ልብስን ከተፈቀደው የስራ ቦታ ውጭ ለብሶ መንቀሳቀስ የተከለከለ ነው::</p>
         </div>
       </div>
     </div>
@@ -464,22 +509,22 @@
     <div class="slide">
       <div class="slide-header">
         <div class="slide-title">የመታወቂያ ባጅ አጠቃቀም እና መስፈርቶች</div>
-        <div class="slide-subtitle">አንቀጽ 2.1.3 & 2.1.9</div>
+        <div class="slide-subtitle">የባጁ ይዘት</div>
       </div>
-      <div class="content-grid" style="grid-template-columns: 1fr 1fr;">
+      <div class="content-grid">
         <div class="card">
           <div class="card-title">መያዝ ያለበት መረጃዎች</div>
           <ul class="styled-list">
-            <li>የተቋሙ ስም እና አርማ</li>
+            <li>የተቋሙ ስም</li>
             <li>የባለሙያው ሙሉ ስም</li>
-            <li>የባለሙያው ግልጽ ፎቶግራፍ</li>
+            <li>የባለሙያው ፎቶ</li>
             <li>የሙያ መጠሪያ / የስራ ድርሻ</li>
           </ul>
         </div>
         <div class="card">
           <div class="card-title">የቋንቋ አጠቃቀም</div>
-          <p style="line-height: 1.8; color: #c8d6e5; font-size: 1.1rem;">
-            የደረት መለያ ባጁ <strong>የጤና ተቋሙ በሚገኝበት አካባቢ የስራ ቋንቋ</strong> እና በ <strong>ፌዴራል የስራ ቋንቋ (አማርኛ)</strong> መፃፍ ይኖርበታል::
+          <p style="line-height: 1.8; color: #c8d6e5; font-size: 1.05rem;">
+            በፌዴራል የስራ ቋንቋ እና ተቋሙ በሚገኝበት አካባቢ የስራ ቋንቋ መጻፍ አለበት::
           </p>
         </div>
       </div>
@@ -488,69 +533,153 @@
     <!-- Slide 7: Uniform Standards -->
     <div class="slide">
       <div class="slide-header">
-        <div class="slide-title">ሙሉ የደንብ ልብስ (Scrub) ዝርዝር መስፈርቶች</div>
-        <div class="slide-subtitle">አንቀጽ 4.4 & 2.5</div>
+        <div class="slide-title">ሙሉ የደንብ ልብስ (Scrub) መስፈርቶች</div>
+        <div class="slide-subtitle">ዝርዝር መስፈርት</div>
       </div>
       <div class="content-grid">
         <div class="card">
           <div class="card-title">🧵 የጨርቅ አይነት</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">የደንብ ልብሱ የጨርቅ አይነት <strong>አንደኛ ደረጃ ቴትራን 6000 (Tetron 6000)</strong> መሆን አለበት::</p>
+          <p style="line-height: 1.6; color: #c8d6e5;">አንደኛ ደረጃ ቴትራን 6000 (Tetron 6000)</p>
         </div>
         <div class="card">
-          <div class="card-title">ፕ የላይ አላባሽ ዲዛይን</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">አንገቱ <strong>'Y'</strong> ወይም <strong>'V'</strong> ቅርፅ የሆነ፣ እጅጌው ከክርን በላይ፣ እና በጎን በኩል መከፈት የሚችል መሆን አለበት::</p>
+          <div class="card-title">👕 የላይ አላባሽ</div>
+          <p style="line-height: 1.6; color: #c8d6e5;">የአንገት ቅርጽ Y ወይም V የሆነ፣ እጅጌው ከክርን በላይ የሆነ፣ በጎን በኩል መከፈት የሚችል::</p>
         </div>
         <div class="card">
           <div class="card-title">👖 ሱሪ / ቀሚስ</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">ወገቡ በገመድ ወይም ባለ ፕላስቲክ ማሰሪያ ያለው:: ቀሚስ ለሚለብሱ ከጉልበት በላይ ያላጠረ መሆን አለበት::</p>
+          <p style="line-height: 1.6; color: #c8d6e5;">የወገብ ማሰሪያው በገመድ ወይም በፕላስቲክ የተሰራ፤ ቀሚስ ከሆነ ከጉልበት በላይ ያላጠረ::</p>
         </div>
       </div>
     </div>
 
-    <!-- Slide 8: Uniform Colors Part 1 -->
+    <!-- Slide 8: Uniform Colors Part 1 (SVG Vector Images) -->
     <div class="slide">
       <div class="slide-header">
-        <div class="slide-title">የደንብ ልብስ ቀለማት - በክፍል እና በሙያ (ክፍል 1)</div>
-        <div class="slide-subtitle">አንቀጽ 2.4</div>
+        <div class="slide-title">የደንብ ልብስ ቀለማት (ክፍል 1)</div>
+        <div class="slide-subtitle">በክፍል እና በሙያ</div>
       </div>
       <div class="content-grid">
+        <!-- OR / ICU (Light Green) -->
         <div class="color-card or-icu">
-          <div class="color-title">ፈዛዛ አረንጓዴ (Light Green)</div>
-          <div class="color-desc">ኦፕራሲዮን ክፍል (OR) እና በፅኑ ህሙማን ክፍል (ICU) የሚያገለግሉ ባለሙያዎች ሁሉ::</div>
+          <div>
+            <div class="color-title">ፈዛዛ አረንጓዴ (Light Green)</div>
+            <div class="color-desc">ኦፕራሲዮን (OR) እና ፅኑ ህሙማን (ICU) ክፍል</div>
+          </div>
+          <div class="svg-container">
+            <svg viewBox="0 0 100 100" width="100" height="100">
+              <!-- Top -->
+              <path d="M 30,20 L 40,10 L 60,10 L 70,20 L 85,28 L 75,42 L 70,38 L 70,60 L 30,60 L 30,38 L 25,42 L 15,28 Z" fill="#81c784" stroke="#ffffff" stroke-width="1.5"/>
+              <path d="M 40,10 L 50,28 L 60,10" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+              <!-- Pocket -->
+              <rect x="35" y="32" width="12" height="12" rx="1" fill="none" stroke="#ffffff" stroke-width="1"/>
+              <!-- Pants -->
+              <path d="M 32,62 L 48,62 L 48,92 L 34,92 Z" fill="#66bb6a" stroke="#ffffff" stroke-width="1.5"/>
+              <path d="M 52,62 L 68,62 L 66,92 L 52,92 Z" fill="#66bb6a" stroke="#ffffff" stroke-width="1.5"/>
+            </svg>
+          </div>
         </div>
+
+        <!-- Emergency (Burgundy) -->
         <div class="color-card emergency">
-          <div class="color-title">በርገንዲ (Burgundy)</div>
-          <div class="color-desc">በድንገተኛ ክፍል (Emergency Department) የሚያገለግሉ ባለሙያዎች ሁሉ::</div>
+          <div>
+            <div class="color-title">በርገንዲ / ወይን ጠጅ (Burgundy)</div>
+            <div class="color-desc">ድንገተኛ ክፍል (Emergency)</div>
+          </div>
+          <div class="svg-container">
+            <svg viewBox="0 0 100 100" width="100" height="100">
+              <path d="M 30,20 L 40,10 L 60,10 L 70,20 L 85,28 L 75,42 L 70,38 L 70,60 L 30,60 L 30,38 L 25,42 L 15,28 Z" fill="#a52a2a" stroke="#ffffff" stroke-width="1.5"/>
+              <path d="M 40,10 L 50,28 L 60,10" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+              <rect x="35" y="32" width="12" height="12" rx="1" fill="none" stroke="#ffffff" stroke-width="1"/>
+              <path d="M 32,62 L 48,62 L 48,92 L 34,92 Z" fill="#800020" stroke="#ffffff" stroke-width="1.5"/>
+              <path d="M 52,62 L 68,62 L 66,92 L 52,92 Z" fill="#800020" stroke="#ffffff" stroke-width="1.5"/>
+            </svg>
+          </div>
         </div>
+
+        <!-- Doctor (Light Silver/Gray) -->
         <div class="color-card doctor">
-          <div class="color-title">ብርማ / እርሳስ (Light Silver) + ነጭ ጋዋን</div>
-          <div class="color-desc">ሀኪሞች (Doctors) በጠቅላላ የህክምና ክፍሎች ሲያገለግሉ::</div>
+          <div>
+            <div class="color-title">ብርማ / እርሳስ (Light Silver)</div>
+            <div class="color-desc">ሀኪሞች (Doctors) + ነጭ ጋዋን</div>
+          </div>
+          <div class="svg-container">
+            <svg viewBox="0 0 100 100" width="100" height="100">
+              <!-- Scrub Top -->
+              <path d="M 30,20 L 40,10 L 60,10 L 70,20 L 85,28 L 75,42 L 70,38 L 70,60 L 30,60 L 30,38 L 25,42 L 15,28 Z" fill="#cfd8dc" stroke="#1a2a3a" stroke-width="1.5"/>
+              <path d="M 40,10 L 50,28 L 60,10" fill="none" stroke="#1a2a3a" stroke-width="1.5"/>
+              <!-- White Lab Coat overlay -->
+              <path d="M 28,20 L 38,20 L 42,60 L 26,60 Z" fill="#ffffff" stroke="#1a2a3a" stroke-width="1"/>
+              <path d="M 72,20 L 62,20 L 58,60 L 74,60 Z" fill="#ffffff" stroke="#1a2a3a" stroke-width="1"/>
+              <!-- Pants -->
+              <path d="M 32,62 L 48,62 L 48,92 L 34,92 Z" fill="#b0bec5" stroke="#1a2a3a" stroke-width="1.5"/>
+              <path d="M 52,62 L 68,62 L 66,92 L 52,92 Z" fill="#b0bec5" stroke="#1a2a3a" stroke-width="1.5"/>
+            </svg>
+          </div>
         </div>
+
+        <!-- Nurse (Light Blue) -->
         <div class="color-card nurse">
-          <div class="color-title">ፈዛዛ ሰማያዊ (Light Blue)</div>
-          <div class="color-desc">ነርሶች (Nurses) በጠቅላላ አገልግሎት መስጫ ክፍሎች::</div>
+          <div>
+            <div class="color-title">ፈዛዛ ሰማያዊ (Light Blue)</div>
+            <div class="color-desc">ነርሶች (Nurses)</div>
+          </div>
+          <div class="svg-container">
+            <svg viewBox="0 0 100 100" width="100" height="100">
+              <path d="M 30,20 L 40,10 L 60,10 L 70,20 L 85,28 L 75,42 L 70,38 L 70,60 L 30,60 L 30,38 L 25,42 L 15,28 Z" fill="#64b5f6" stroke="#ffffff" stroke-width="1.5"/>
+              <path d="M 40,10 L 50,28 L 60,10" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+              <rect x="35" y="32" width="12" height="12" rx="1" fill="none" stroke="#ffffff" stroke-width="1"/>
+              <path d="M 32,62 L 48,62 L 48,92 L 34,92 Z" fill="#42a5f5" stroke="#ffffff" stroke-width="1.5"/>
+              <path d="M 52,62 L 68,62 L 66,92 L 52,92 Z" fill="#42a5f5" stroke="#ffffff" stroke-width="1.5"/>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Slide 9: Uniform Colors Part 2 -->
+    <!-- Slide 9: Uniform Colors Part 2 (SVG Vector Images) -->
     <div class="slide">
       <div class="slide-header">
-        <div class="slide-title">የደንብ ልብስ ቀለማት - በክፍል እና በሙያ (ክፍል 2)</div>
-        <div class="slide-subtitle">አንቀጽ 2.4</div>
+        <div class="slide-title">የደንብ ልብስ ቀለማት (ክፍል 2)</div>
+        <div class="slide-subtitle">በክፍል እና በሙያ</div>
       </div>
       <div class="content-grid">
+        <!-- Midwives (Light Purple) -->
         <div class="color-card midwife">
-          <div class="color-title">ፈዛዛ ሀምራዊ (Light Purple)</div>
-          <div class="color-desc">ሚድዋይፎች (Midwives) በጠቅላላ ክፍሎች::</div>
+          <div>
+            <div class="color-title">ፈዛዛ ሀምራዊ (Light Purple)</div>
+            <div class="color-desc">ሚድዋይፎች (Midwives)</div>
+          </div>
+          <div class="svg-container">
+            <svg viewBox="0 0 100 100" width="100" height="100">
+              <path d="M 30,20 L 40,10 L 60,10 L 70,20 L 85,28 L 75,42 L 70,38 L 70,60 L 30,60 L 30,38 L 25,42 L 15,28 Z" fill="#ba68c8" stroke="#ffffff" stroke-width="1.5"/>
+              <path d="M 40,10 L 50,28 L 60,10" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+              <rect x="35" y="32" width="12" height="12" rx="1" fill="none" stroke="#ffffff" stroke-width="1"/>
+              <path d="M 32,62 L 48,62 L 48,92 L 34,92 Z" fill="#ab47bc" stroke="#ffffff" stroke-width="1.5"/>
+              <path d="M 52,62 L 68,62 L 66,92 L 52,92 Z" fill="#ab47bc" stroke="#ffffff" stroke-width="1.5"/>
+            </svg>
+          </div>
         </div>
+
+        <!-- Other Professionals (Dark Blue/Blue Black) -->
         <div class="color-card other">
-          <div class="color-title">ጥቁር ሰማያዊ (Dark Blue / Blue Black)</div>
-          <div class="color-desc">ላቦራቶሪ፣ ፋርማሲ፣ ራዲዮሎጂ፣ ፊዚዮቴራፒ እና ሌሎች ባለሙያዎች::</div>
+          <div>
+            <div class="color-title">ጥቁር ሰማያዊ (Dark/Blue Black)</div>
+            <div class="color-desc">ላቦራቶሪ፣ ፋርማሲ፣ ራዲዮሎጂ፣ ፊዚዮቴራፒ ወዘተ</div>
+          </div>
+          <div class="svg-container">
+            <svg viewBox="0 0 100 100" width="100" height="100">
+              <path d="M 30,20 L 40,10 L 60,10 L 70,20 L 85,28 L 75,42 L 70,38 L 70,60 L 30,60 L 30,38 L 25,42 L 15,28 Z" fill="#1c3144" stroke="#64ffda" stroke-width="1.5"/>
+              <path d="M 40,10 L 50,28 L 60,10" fill="none" stroke="#64ffda" stroke-width="1.5"/>
+              <rect x="35" y="32" width="12" height="12" rx="1" fill="none" stroke="#64ffda" stroke-width="1"/>
+              <path d="M 32,62 L 48,62 L 48,92 L 34,92 Z" fill="#0f1c2e" stroke="#64ffda" stroke-width="1.5"/>
+              <path d="M 52,62 L 68,62 L 66,92 L 52,92 Z" fill="#0f1c2e" stroke="#64ffda" stroke-width="1.5"/>
+            </svg>
+          </div>
         </div>
-        <div class="card" style="grid-column: span 2;">
-          <div class="card-title">👶 ልዩ ህክምና ክፍሎች (ህጻናትና ስነ-አእምሮ)</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">በህፃናት ክፍልና የስነ አእምሮ ህክምና ክፍል በሚያገለግሉበት ጊዜ የደንብ ልብሱ የታካሚውን ስነ ልቦና ይረብሻል ተብሎ ከተታመነበት **ያለደንብ ልብስ** አገልግሎት መስጠት ይቻላል::</p>
+
+        <div class="card" style="width: 100%;">
+          <div class="card-title">👶 ልዩ ሁኔታዎች (ህጻናትና ስነ-አእምሮ)</div>
+          <p style="line-height: 1.6; color: #c8d6e5;">የደንብ ልብሱ የታካሚውን ስነ-ልቦና ይረብሻል ተብሎ ከተታመነበት ያለደንብ ልብስ ማገልገል ይቻላል::</p>
         </div>
       </div>
     </div>
@@ -559,42 +688,52 @@
     <div class="slide">
       <div class="slide-header">
         <div class="slide-title">የጤና ሳይንስ ተማሪዎች የአለባበስ ስርዓት</div>
-        <div class="slide-subtitle">አንቀጽ 2.42 & 4.6 (አባሪ 8)</div>
+        <div class="slide-subtitle">የተማሪዎች መመሪያ</div>
       </div>
       <div class="content-grid">
         <div class="card">
           <div class="card-title">🎓 የደንብ ልብስ አይነት</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">ተማሪዎች ሲመረቁ የሚኖራቸውን ሙያ ሙሉ የደንብ ልብስ ይለብሳሉ (ምሳሌ፡ የነርስ ተማሪ ፈዛዛ ሰማያዊ ይለብሳል)::</p>
+          <p style="line-height: 1.6; color: #c8d6e5;">ከተመረቁ በኋላ የሚኖራቸውን ሙያ ሙሉ የደንብ ልብስ ይለብሳሉ::</p>
         </div>
         <div class="card">
-          <div class="card-title">🏷️ የኮሌታ መለያ (Stripe)</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">የተማሪነት መለያ እንዲሆን በኮሌታው ዙሪያ <strong>ነጭ መለያ (Stripe)</strong> ይኖረዋል::</p>
+          <div class="card-title">🏷️ የኮሌታ መለያ</div>
+          <p style="line-height: 1.6; color: #c8d6e5;">በኮሌታቸው ዙሪያ ነጭ መለያ (Stripe) ይኖረዋል::</p>
         </div>
         <div class="card">
           <div class="card-title">📚 የትምህርት ዘመን መለያ</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">በእጅጌው ጫፍ ላይ የሚደረግ ነጭ መለያ:: የነጭ መስመሮቹ ብዛት እንደ ትምህርት ዘመኑ ይወሰናል (1ኛ አመት = 1 መስመር፣ 2ኛ አመት = 2 መስመር...)::</p>
+          <p style="line-height: 1.6; color: #c8d6e5;">በእጅጌው ጫፍ ላይ ይደረጋል፤ ብዛቱ እንደ ትምህርት ዘመኑ ይወሰናል (1ኛ ዓመት 1 መለያ...)::</p>
         </div>
       </div>
     </div>
 
-    <!-- Slide 11: Hygiene & Footwear -->
+    <!-- Slide 11: Hygiene & Footwear (SVG Vector Shoe) -->
     <div class="slide">
       <div class="slide-header">
         <div class="slide-title">የጫማ፣ የጸጉር እና የጥፍር አያያዝ</div>
-        <div class="slide-subtitle">አንቀጽ 2.1.5, 2.1.12, 2.2.4 & 2.2.5</div>
+        <div class="slide-subtitle">የግል ንጽህና</div>
       </div>
       <div class="content-grid">
         <div class="card">
-          <div class="card-title">👟 የጫማ መስፈርት</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">ምቹ፣ ንጹህ፣ **ክፍት ያልሆነ**፣ ድምፅ የማይፈጥር፣ ዝቅተኛ ተረከዝ ያለው እና የስራ ቅልጥፍናን የማያደናቅፍ (ዶክተር ጫማ)::</p>
+          <div class="card-title">👟 ጫማ</div>
+          <p style="line-height: 1.6; color: #c8d6e5;">ምቹ፣ ንጹህ፣ ክፍት ያልሆነ፣ ድምፅ የማይፈጥር፣ ዝቅተኛ ተረከዝ ያለው (ዶክተር ጫማ)::</p>
+          <div class="svg-container" style="height: 100px;">
+            <!-- Medical Clogs SVG -->
+            <svg viewBox="0 0 120 60" width="120" height="60">
+              <path d="M 15,45 C 15,35 25,25 45,22 C 60,20 80,18 95,28 C 105,35 105,45 100,48 C 95,50 20,50 15,45 Z" fill="#e0e0e0" stroke="#64ffda" stroke-width="2"/>
+              <ellipse cx="30" cy="28" rx="3" ry="2" fill="#9e9e9e"/>
+              <ellipse cx="40" cy="26" rx="3" ry="2" fill="#9e9e9e"/>
+              <ellipse cx="50" cy="25" rx="3" ry="2" fill="#9e9e9e"/>
+              <path d="M 15,45 L 100,48 L 98,53 L 17,51 Z" fill="#757575"/>
+            </svg>
+          </div>
         </div>
         <div class="card">
-          <div class="card-title">ቸ የጸጉር አያያዝ</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">ሴቶች ረጅም ፀጉር ወደ ላይ ማሰር አለባቸው:: ሴት ነርሶችና ሚድዋይፎች **ነጭ የራስ ቆብ** ማድረግ አለባቸው:: የወንዶች ፀጉር በአጭሩ የተቆረጠ መሆን አለበት::</p>
+          <div class="card-title">💇‍♀️ ጸጉር</div>
+          <p style="line-height: 1.6; color: #c8d6e5;">ሴቶች ወደ ላይ የተያዘ (ነርሶችና ሚድዋይፎች ነጭ የራስ ቆብ ማድረግ አለባቸው):: ወንዶች በአጭሩ የተቆረጠ::</p>
         </div>
         <div class="card">
-          <div class="card-title">💅 የጥፍር አያያዝ</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">ተፈጥሮአዊ ያልሆነ ጥፍር መጠቀም የተከለከለ ነው:: ተፈጥሮአዊው ጥፍር በአጭሩ የተቆረጠ፣ የጥፍር ቀለም የሌለው እና ንጹህ መሆን አለበት::</p>
+          <div class="card-title">💅 ጥፍር</div>
+          <p style="line-height: 1.6; color: #c8d6e5;">አጭር የተቆረጠ፣ ንጹህ እና የጥፍር ቀለም የሌለው:: የሰው ሰራሽ ጥፍር ማድረግ የተከለከለ ነው::</p>
         </div>
       </div>
     </div>
@@ -603,20 +742,20 @@
     <div class="slide">
       <div class="slide-header">
         <div class="slide-title">ጌጣጌጥ፣ መዋቢያ እና ኤሌክትሮኒክስ</div>
-        <div class="slide-subtitle">አንቀጽ 2.2 & 2.3</div>
+        <div class="slide-subtitle">ተጨማሪ መመሪያዎች</div>
       </div>
       <div class="content-grid">
         <div class="card">
           <div class="card-title">💍 ጌጣጌጥ እና ንቅሳት</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">ማንኛውም ጌጣጌጥ እና የሰውነት ንቅሳቶች በስራ ላይ በሚሆኑበት ጊዜ መወለቅ ወይም መሸፈን አለባቸው::</p>
+          <p style="line-height: 1.6; color: #c8d6e5;">በስራ ሰዓት መወልቅ ወይም መሸፈን አለባቸው::</p>
         </div>
         <div class="card">
-          <div class="card-title">💄 መዋቢያዎችና ሽቶዎች</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">መዋቢያዎች፣ ሽቶዎች እና የላብ ማድረቂያዎች ታካሚንም ሆነ የስራ ባልደረቦችን የማይረብሹ መሆን አለባቸው::</p>
+          <div class="card-title">💄 መዋቢያዎች</div>
+          <p style="line-height: 1.6; color: #c8d6e5;">ሽቶዎችና የላብ ማደሪያዎች ታካሚንና የስራ ባልደረባን የማይረብሹ መሆን አለባቸው::</p>
         </div>
         <div class="card">
-          <div class="card-title">📱 ኤሌክትሮኒክስ አጠቃቀም</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">የግል ኤሌክትሮኒክስ (ስልክ፣ ታብሌት፣ የጆሮ ማዳመጫ) በስራ ሰዓት ለግል ጉዳይ መጠቀም የተከለከለ ነው:: አስገዳጅ ሁኔታ ሲኖር ኃላፊን አሳውቆ ከስራ ቦታ ውጭ መጠቀም ይቻላል::</p>
+          <div class="card-title">📱 ኤሌክትሮኒክስ</div>
+          <p style="line-height: 1.6; color: #c8d6e5;">ሞባይል፣ ታብሌት ወዘተ በስራ ሰዓት ለግል ጉዳይ መጠቀም strictly የተከለከለ ነው::</p>
         </div>
       </div>
     </div>
@@ -625,20 +764,20 @@
     <div class="slide">
       <div class="slide-header">
         <div class="slide-title">የአየር ንብረት እና ልዩ ሁኔታዎች</div>
-        <div class="slide-subtitle">አንቀጽ 2.1.4, 2.1.6 & 2.1.10</div>
+        <div class="slide-subtitle">ተጨማሪ ማብራሪያ</div>
       </div>
       <div class="content-grid">
         <div class="card">
-          <div class="card-title">🧥 ተጨማሪ አልባሳት (ሹራብ/ጃኬት)</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">ከአየር ንብረት አንጻር ከላይ የሚደረብ በተቋሙ የተዘጋጀ፣ የተቋሙ አርማ፣ ስምና የሙያ መለያ ያለበት ሹራብ/ጃኬት መልበስ ይቻላል::</p>
+          <div class="card-title">🧥 ተጨማሪ አልባሳት</div>
+          <p style="line-height: 1.6; color: #c8d6e5;">የአየር ንብረቱን ታሳቢ በማድረግ የተቋሙ አርማ፣ ስም እና የሙያ መለያ ያለበት ሹራብ ወይም ጃኬት መጠቀም ይቻላል::</p>
         </div>
         <div class="card">
           <div class="card-title">🧕 የሃይማኖት መለዮ</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">የእምነት የፀጉር መሸፈኛ መጠቀም የሚፈቀድ ሲሆን፣ መሸፈኛው ግን የፊት ገፅታን ለመለየት የሚያስቸግር መሆን የለበትም::</p>
+          <p style="line-height: 1.6; color: #c8d6e5;">የፊት ገጽታን ለመለየት የሚያስቸግር መሆን የለበትም::</p>
         </div>
         <div class="card">
-          <div class="card-title">ከአካል ጉዳትና እርግዝና ጋር የተያያዙ</div>
-          <p style="line-height: 1.6; color: #c8d6e5;">በአካል ጉዳት ወይም በእርግዝና ምክንያት መደበኛ ዩኒፎርም ለመልበስ ችግር ሲገጥም በጤና ተቋሙ አመራር ውሳኔ ይስተናገዳል::</p>
+          <div class="card-title">♿ ልዩ ሁኔታዎች</div>
+          <p style="line-height: 1.6; color: #c8d6e5;">በአካል ጉዳት ወይም በእርግዝና ምክንያት መደበኛ ዩኒፎርም መልበስ ካልተቻለ በተቋሙ ማኔጅመንት ውሳኔ ይስተናገዳል::</p>
         </div>
       </div>
     </div>
@@ -646,25 +785,25 @@
     <!-- Slide 14: Hospital Management Responsibilities -->
     <div class="slide">
       <div class="slide-header">
-        <div class="slide-title">የጤና ተቋማት ማኔጅመንት ተግባር እና ሀላፊነት</div>
-        <div class="slide-subtitle">አንቀጽ 3.1.3</div>
+        <div class="slide-title">የተቋሙ ማኔጅመንት ኃላፊነቶች</div>
+        <div class="slide-subtitle">ተግባርና ኃላፊነት</div>
       </div>
       <div class="step-list">
         <div class="step-item">
           <div class="step-num">1</div>
-          <div class="step-text">በየአመቱ ለጤና ባለሙያዎች የደንብ ልብስ በጀት መመደብ::</div>
+          <div class="step-text">በየዓመቱ ለደንብ ልብስ በቂ በጀት መመደብ::</div>
         </div>
         <div class="step-item">
           <div class="step-num">2</div>
-          <div class="step-text">በመመሪያው መሰረት <strong>ሁለት የደንብ ልብስ በአንድ ዓመት</strong> ለባለሙያው መስጠት::</div>
+          <div class="step-text">በዓመት ሁለት ሙሉ የደንብ ልብስ ለባለሙያዎች ማቅረብ::</div>
         </div>
         <div class="step-item">
           <div class="step-num">3</div>
-          <div class="step-text">የደንብ ልብስ በአግባቡና በደረጃው መሰረት መቅረቡንና መለበሱን ማረጋገጥና መቆጣጠር::</div>
+          <div class="step-text">የደንብ ልብሱ በደረጃው መሰረት መቅረቡን ማረጋገጥና መቆጣጠር::</div>
         </div>
         <div class="step-item">
           <div class="step-num">4</div>
-          <div class="step-text">የተግባር ልምምድ ተማሪዎች መመሪያውን እንዲተገብሩ በውል ስምምነታቸው (MOU) ውስጥ ማካተት::</div>
+          <div class="step-text">ለተማሪዎች ማስፈጸሚያ የሚሆን የውል ስምምነት (MOU) ማዘጋጀት::</div>
         </div>
       </div>
     </div>
@@ -673,20 +812,20 @@
     <div class="slide">
       <div class="slide-header">
         <div class="slide-title">የአለባበስ ስርዓት ኮሚቴ መዋቅር</div>
-        <div class="slide-subtitle">አንቀጽ 3.1.4</div>
+        <div class="slide-subtitle">የኮሚቴ ስብጥር</div>
       </div>
-      <div class="card" style="margin-bottom: 1.5rem;">
-        <div class="card-title">👥 የኮሚቴው ስብጥር (አባላት ብዛት ከ 7 ያላነሰ)</div>
-        <p style="line-height: 1.6; color: #c8d6e5;">ኮሚቴው ከሚከተሉት ክፍሎች የተወጣጡ ባለሙያዎችን ያቀፋል፡ የተመላላሽ ህክምና፣ የተኝቶ ህክምና፣ የድንገተኛ ህክምና፣ የነርሲንግ ዳይሬክተር/ሜትረን፣ የሰው ሀብት፣ የሰራተኛ ተወካይ፣ የግዢ ክፍል እና የኳሊቲ ክፍል::</p>
+      <div class="card" style="margin-bottom: 1rem; width: 100%;">
+        <div class="card-title">👥 የአባላት ብዛት</div>
+        <p style="line-height: 1.6; color: #c8d6e5;">ከ 7 ያላነሱ አባላት:: ከተመላላሽ፣ የተኝቶ፣ የድንገተኛ ህክምና ክፍሎች፣ የሰው ሀብት፣ የግዢ ክፍል እና የሰራተኛ ተወካይ የተወጣጡ::</p>
       </div>
-      <div class="content-grid" style="grid-template-columns: 1fr 1fr;">
+      <div class="content-grid">
         <div class="card">
           <div class="card-title">👑 ሰብሳቢ</div>
-          <p style="line-height: 1.6; color: #c8d6e5; font-size: 1.2rem;">በሜትረን / ነርሲንግ ዳይሬክተር ይመራል::</p>
+          <p style="line-height: 1.6; color: #c8d6e5;">የነርሲንግ ዳይሬክተር / ሜትረን</p>
         </div>
         <div class="card">
           <div class="card-title">📝 ጸሐፊ</div>
-          <p style="line-height: 1.6; color: #c8d6e5; font-size: 1.2rem;">የጥራት (Quality) ክፍል እንደ ጸሀፊ ሆኖ ያገለግላል::</p>
+          <p style="line-height: 1.6; color: #c8d6e5;">የጥራት ክፍል (Quality)</p>
         </div>
       </div>
     </div>
@@ -694,25 +833,25 @@
     <!-- Slide 16: Committee Responsibilities -->
     <div class="slide">
       <div class="slide-header">
-        <div class="slide-title">የአለባበስ ስርዓት ኮሚቴ ተግባር እና ሀላፊነት</div>
-        <div class="slide-subtitle">አንቀጽ 3.1.4</div>
+        <div class="slide-title">የአለባበስ ስርዓት ኮሚቴ ተግባራት</div>
+        <div class="slide-subtitle">ኃላፊነቶች</div>
       </div>
       <div class="step-list">
         <div class="step-item">
           <div class="step-num">1</div>
-          <div class="step-text">በስራ ላይ ያሉ ባለሙያዎች የደንብ ልብስ መልበሳቸውን ማረጋገጥ እና <strong>በወር ሁለት ጊዜ ድንገተኛ ቁጥጥር</strong> ማድረግ::</div>
+          <div class="step-text">በወር ሁለት ጊዜ ድንገተኛ ቁጥጥር ማድረግ::</div>
         </div>
         <div class="step-item">
           <div class="step-num">2</div>
-          <div class="step-text">የደንብ ልብስ ጥራት፣ አይነት እና መጠን መምረጥ፣ መከታተል እና ጥራት የጎደላቸውን እንዲስተካከሉ ማድረግ::</div>
+          <div class="step-text">የደንብ ልብስ ጥራትና መጠን መምረጥና ማረጋገጥ::</div>
         </div>
         <div class="step-item">
           <div class="step-num">3</div>
-          <div class="step-text">የመመሪያውን ይዘት ለባለሙያዎች ማስተዋወቅ፣ ማወያየት እና ማስተማር::</div>
+          <div class="step-text">ከባለሙያዎች የሚነሱ ቅሬታዎችን ማስተናገድና ግንዛቤ ማስጨበጥ::</div>
         </div>
         <div class="step-item">
           <div class="step-num">4</div>
-          <div class="step-text">መመሪያ የተላለፉ ባለሙያዎችን ክስ ማጣራት እና ለዲሲፕሊን ኮሚቴ ማቅረብ::</div>
+          <div class="step-text">መመሪያ ተላላፊዎችን አጣርቶ ለዲሲፕሊን ኮሚቴ ማቅረብ::</div>
         </div>
       </div>
     </div>
@@ -720,21 +859,17 @@
     <!-- Slide 17: Staff Responsibilities -->
     <div class="slide">
       <div class="slide-header">
-        <div class="slide-title">የባለሙያዎች እና ተማሪዎች ተግባር እና ሀላፊነት</div>
-        <div class="slide-subtitle">አንቀጽ 3.1.5</div>
+        <div class="slide-title">የባለሙያው እና ተማሪው ግዴታዎች</div>
+        <div class="slide-subtitle">ተግባርና ኃላፊነት</div>
       </div>
-      <div class="content-grid" style="grid-template-columns: 1fr 1fr;">
+      <div class="content-grid">
         <div class="card">
           <div class="card-title">✅ የመልበስ ግዴታ</div>
-          <p style="line-height: 1.8; color: #c8d6e5; font-size: 1.1rem;">
-            በመመሪያው መሰረት የተቀመጡ የስነምግባር መርሆችን ተከትለው የተሰጣቸውን የደንብ ልብስ አሟልተው የመልበስ ግዴታ አለባቸው::
-          </p>
+          <p style="line-height: 1.6; color: #c8d6e5;"> የመመሪያውን ድንጋጌዎች አሟልቶ የማክበርና የመልበስ ግዴታ አለበት::</p>
         </div>
         <div class="card">
           <div class="card-title">⚠️ የሀላፊነት ወሰን</div>
-          <p style="line-height: 1.8; color: #c8d6e5; font-size: 1.1rem;">
-            የደንብ ልብስ ሳይለብሱ በስራ ገበታ ላይ መገኘት በጥብቅ የተከለከለ ነው:: ከመመሪያው ውጭ በመሆናቸው ለሚወሰዱ እርምጃዎች ባለሙያዎቹ ሙሉ ሀላፊነት ይወስዳሉ::
-          </p>
+          <p style="line-height: 1.6; color: #c8d6e5;">የደንብ ልብስ ሳይለብሱ በስራ ገበታ ላይ መገኘት በጥብቅ የተከለከለ ነው:: ህጉን አለማክበር አስተዳደራዊ እና ዲሲፕሊናዊ እርምጃዎችን ያስከትላል::</p>
         </div>
       </div>
     </div>
@@ -742,23 +877,23 @@
     <!-- Slide 18: Disciplinary Measures Part 1 -->
     <div class="slide">
       <div class="slide-header">
-        <div class="slide-title">መመሪያ ማስተላለፍ እና የዲሲፕሊን እርምጃዎች (1)</div>
-        <div class="slide-subtitle">አንቀጽ 4.4</div>
+        <div class="slide-title">የዲሲፕሊን እርምጃዎች (ክፍል 1)</div>
+        <div class="slide-subtitle">መመሪያ ማስተላለፍ</div>
       </div>
-      <div class="content-grid" style="grid-template-columns: 1fr 1fr;">
+      <div class="content-grid">
         <div class="card step-item warning-level">
           <div>
-            <div class="card-title" style="color: #ffb703;">1. በወር ውስጥ 2 ጊዜ ሳይለብስ ቢቀር</div>
+            <div class="card-title" style="color: #ffb703;">1. በወር 2 ጊዜ ካልተከበረ</div>
             <p style="line-height: 1.6; color: #c8d6e5; margin-top: 0.5rem;">
-              በአገልግሎት ክፍል ኃላፊ <strong>የምክር አገልግሎት</strong> እና <strong>የቃል ማስጠንቀቂያ</strong> በቅርብ ኃላፊው ይሰጠዋል:: ለኮሚቴውም በግልባጭ እንዲያውቀው ይደረጋል::
+              በቅርብ ኃላፊው የምክር አገልግሎት እና የቃል ማስጠንቀቂያ ይሰጣል:: ለኮሚቴው በግልባጭ ይላካል::
             </p>
           </div>
         </div>
         <div class="card step-item warning-level">
           <div>
-            <div class="card-title" style="color: #fb8500;">2. በወር ውስጥ 3 ጊዜ ሳይለብስ ቢቀር</div>
+            <div class="card-title" style="color: #fb8500;">2. በወር 3 ጊዜ ካልተከበረ</div>
             <p style="line-height: 1.6; color: #c8d6e5; margin-top: 0.5rem;">
-              በቅርብ ኃላፊው <strong>የጽሁፍ ማስጠንቀቂያ</strong> ይሰጠዋል:: እንዲሁም ለአለባበስ ኮሚቴው በጽሁፍ እንዲያውቀው ይደረጋል::
+              በቅርብ ኃላፊው የጽሁፍ ማስጠንቀቂያ ይሰጣል:: ለኮሚቴው በጽሁፍ ይሳወቃል::
             </p>
           </div>
         </div>
@@ -768,46 +903,86 @@
     <!-- Slide 19: Disciplinary Measures Part 2 -->
     <div class="slide">
       <div class="slide-header">
-        <div class="slide-title">መመሪያ ማስተላለፍ እና የዲሲፕሊን እርምጃዎች (2)</div>
-        <div class="slide-subtitle">አንቀጽ 4.4</div>
+        <div class="slide-title">የዲሲፕሊን እርምጃዎች (ክፍል 2)</div>
+        <div class="slide-subtitle">መመሪያ ማስተላለፍ</div>
       </div>
-      <div class="content-grid" style="grid-template-columns: 1fr 1fr;">
+      <div class="content-grid">
         <div class="card step-item danger-level">
           <div>
-            <div class="card-title" style="color: var(--accent);">3. በወር ውስጥ 5 ጊዜ ሳይለብስ ቢቀር</div>
+            <div class="card-title" style="color: var(--accent);">3. በወር 5 ጊዜ ካልተከበረ</div>
             <p style="line-height: 1.6; color: #c8d6e5; margin-top: 0.5rem;">
-              አለባበሱን እንዲያስተካክል ከተደረገ በኋላ ወደ ዲሲፕሊን ኮሚቴ ይላካል:: ለማስተካከል ፍቃደኛ ካልሆነ <strong>ከስራ ክፍሉ ገብቶ እንዳይሰራ ታግዶ</strong> ወደ ሆስፒታሉ ዲሲፕሊን ኮሚቴ ይመራል::
+              አለባበሱን እንዲያስተካክል ተደርጎ ጉዳዩ ወደ ዲሲፕሊን ኮሚቴ ይላካል:: ለማስተካከል ፍቃደኛ ካልሆነ ከስራ ታግዶ በሲቪል ሰርቪስ ህግ መሰረት እርምጃ ይወሰዳል::
             </p>
           </div>
         </div>
         <div class="card step-item danger-level">
           <div>
-            <div class="card-title" style="color: var(--accent);">4. ደጋጋሚ ጥፋተኝነት</div>
+            <div class="card-title" style="color: var(--accent);">4. ደጋጋሚ ጥፋት</div>
             <p style="line-height: 1.6; color: #c8d6e5; margin-top: 0.5rem;">
-              ከዚህ ቀደም የቃልና የጽሁፍ ማስጠንቀቂያ ተሰጥቶት እንደገና ካልለበሰ፡ በቀጥታ ከህክምና ክፍል ታግዶ ወደ ዲሲፕሊን ኮሚቴ ይላካል:: የሲቪል ሰርቪስ ህግ ተከትሎ እርምጃ ይወሰዳል::
+              ከዚህ ቀደም ማስጠንቀቂያ ያለው ከሆነ አሁኑኑ ከህክምና ክፍሉ ገብቶ እንዳይሰራ ታግዶ ወደ ዲሲፕሊን ኮሚቴ ይመራል::
             </p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Slide 20: Conclusion & Discussion -->
+    <!-- Slide 20: Conclusion & Discussion (Group SVG Graphic) -->
     <div class="slide title-slide">
       <span class="badge-pill">ለተግባራዊነቱ ሁላችንም እንረባረብ</span>
-      <h1 style="font-size: 2.5rem;">አመሰግናለሁ!</h1>
-      <p style="font-size: 1.3rem; color: #c8d6e5; max-width: 800px; line-height: 1.6; margin-bottom: 2rem;">
-        የአለባበስ ስርዓታችን የሙያችን መግለጫ፣ የታካሚዎቻችን ደህንነት መጠበቂያ እና የተቋማችን መታወቂያ ነው::
+      <h1>ማጠቃለያ</h1>
+      <p style="font-size: 1.1rem; color: #c8d6e5; max-width: 800px; line-height: 1.6; margin-bottom: 1rem;">
+        የአለባበስ ስርዓታችን የሙያችን መግለጫ፣ የታካሚዎቻችን ደህንነት እና የተቋማችን ክብር ነው! የመመሪያውን ህጎች በማክበርና በማስከበር ረገድ ሁላችንም የድርሻችንን እንወጣ::
       </p>
-      <div style="font-size: 1.5rem; color: #64ffda;">ጥያቄዎችና አስተያየቶች?</div>
+      
+      <div class="hero-svg-container">
+        <!-- SVG Team Representation -->
+        <svg viewBox="0 0 300 120" width="100%" height="100%">
+          <!-- Green Scrub -->
+          <g transform="translate(20, 20)">
+            <circle cx="20" cy="15" r="12" fill="#81c784"/>
+            <path d="M 5 50 L 5 35 C 5 28 12 25 20 25 C 28 25 35 28 35 35 L 35 50 Z" fill="#2e7d32"/>
+          </g>
+          <!-- Blue Scrub -->
+          <g transform="translate(80, 10)">
+            <circle cx="20" cy="15" r="12" fill="#64b5f6"/>
+            <path d="M 5 55 L 5 35 C 5 28 12 25 20 25 C 28 25 35 28 35 35 L 35 55 Z" fill="#4682b4"/>
+          </g>
+          <!-- Doctor with Lab Coat -->
+          <g transform="translate(140, 5)">
+            <circle cx="20" cy="15" r="12" fill="#cfd8dc"/>
+            <path d="M 5 60 L 5 35 C 5 28 12 25 20 25 C 28 25 35 28 35 35 L 35 60 Z" fill="#8a9ba8"/>
+            <path d="M 2 60 L 10 28 L 20 60 Z" fill="#ffffff"/>
+            <path d="M 38 60 L 30 28 L 20 60 Z" fill="#ffffff"/>
+          </g>
+          <!-- Purple Scrub -->
+          <g transform="translate(200, 10)">
+            <circle cx="20" cy="15" r="12" fill="#ba68c8"/>
+            <path d="M 5 55 L 5 35 C 5 28 12 25 20 25 C 28 25 35 28 35 35 L 35 55 Z" fill="#8e44ad"/>
+          </g>
+          <!-- Dark Blue Scrub -->
+          <g transform="translate(260, 20)">
+            <circle cx="20" cy="15" r="12" fill="#90a4ae"/>
+            <path d="M 5 50 L 5 35 C 5 28 12 25 20 25 C 28 25 35 28 35 35 L 35 50 Z" fill="#1a2a3a"/>
+          </g>
+        </svg>
+      </div>
+
+      <div style="font-size: 1.3rem; color: #64ffda; margin-top: 1.5rem;">ጥያቄዎች እና አስተያየቶች?</div>
     </div>
 
   </div>
 
   <!-- Navigation Controls -->
   <div class="controls">
-    <button class="btn" id="prevBtn" onclick="changeSlide(-1)">❮ ወደ ኋላ (Previous)</button>
-    <div class="slide-counter" id="slideCounter">ስላይድ 1 ከ 20</div>
-    <button class="btn" id="nextBtn" onclick="changeSlide(1)">ወደ ፊት (Next) ❯</button>
+    <button class="btn" id="prevBtn" onclick="changeSlide(-1)" aria-label="Previous Slide">
+      <span>❮</span>&nbsp;<span class="btn-text-full">ወደ ኋላ</span><span class="btn-text-short">Prev</span>
+    </button>
+    
+    <div class="slide-counter" id="slideCounter">1 / 20</div>
+    
+    <button class="btn" id="nextBtn" onclick="changeSlide(1)" aria-label="Next Slide">
+      <span class="btn-text-full">ወደ ፊት</span><span class="btn-text-short">Next</span>&nbsp;<span>❯</span>
+    </button>
   </div>
 
   <script>
@@ -818,22 +993,22 @@
     const progressBar = document.getElementById('progressBar');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
+    const deckContainer = document.getElementById('deckContainer');
 
     function updateSlide() {
       slides.forEach((slide, index) => {
         if (index === currentSlide) {
           slide.classList.add('active');
+          slide.scrollTop = 0;
         } else {
           slide.classList.remove('active');
         }
       });
 
-      // Update Counter & Progress
-      slideCounter.textContent = `ስላይድ ${currentSlide + 1} ከ ${totalSlides}`;
+      slideCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
       const progressPercent = ((currentSlide + 1) / totalSlides) * 100;
       progressBar.style.width = `${progressPercent}%`;
 
-      // Button states
       prevBtn.disabled = currentSlide === 0;
       nextBtn.disabled = currentSlide === totalSlides - 1;
     }
@@ -845,7 +1020,6 @@
       updateSlide();
     }
 
-    // Keyboard Navigation
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight' || e.key === 'Space') {
         if (currentSlide < totalSlides - 1) changeSlide(1);
@@ -854,7 +1028,35 @@
       }
     });
 
-    // Initialize
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+    deckContainer.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    deckContainer.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      touchEndY = e.changedTouches[0].screenY;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const xDiff = touchStartX - touchEndX;
+      const yDiff = touchStartY - touchEndY;
+
+      if (Math.abs(xDiff) > Math.abs(yDiff) && Math.abs(xDiff) > 40) {
+        if (xDiff > 0 && currentSlide < totalSlides - 1) {
+          changeSlide(1);
+        } else if (xDiff < 0 && currentSlide > 0) {
+          changeSlide(-1);
+        }
+      }
+    }
+
     updateSlide();
   </script>
 </body>
